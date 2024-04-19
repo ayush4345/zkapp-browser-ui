@@ -9,8 +9,8 @@ import type {
 export default class ZkappWorkerClient {
   // ---------------------------------------------------------------------------------------
 
-  setActiveInstanceToBerkeley() {
-    return this._call('setActiveInstanceToBerkeley', {});
+  setActiveInstanceToDevnet() {
+    return this._call('setActiveInstanceToDevnet', {});
   }
 
   loadContract() {
@@ -32,7 +32,8 @@ export default class ZkappWorkerClient {
     return result as ReturnType<typeof fetchAccount>;
   }
 
-  initZkappInstance(publicKey: PublicKey) {
+  initZkappInstance(publicKey58: string) {
+    const publicKey = PublicKey.fromBase58(publicKey58);
     return this._call('initZkappInstance', {
       publicKey58: publicKey.toBase58(),
     });

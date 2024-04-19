@@ -6,7 +6,7 @@ import GradientBG from '../components/GradientBG.js';
 import styles from '../styles/Home.module.css';
 
 let transactionFee = 0.1;
-const ZKAPP_ADDRESS = 'B62qknCphH8ikE9Bu46dFgamUeYRcE9FtKr5ahh5tcJDf7ibRXJdzWV';
+const ZKAPP_ADDRESS = 'B62qq6EoK6cCHUs7LA1MEQduGZDyov6GpXwB8xbqQuSkchMm1xDrcY6';
 
 export default function Home() {
   const [state, setState] = useState({
@@ -45,7 +45,7 @@ export default function Home() {
         setDisplayText('Done loading web worker');
         console.log('Done loading web worker');
 
-        await zkappWorkerClient.setActiveInstanceToBerkeley();
+        await zkappWorkerClient.setActiveInstanceToDevnet();
 
         const mina = (window as any).mina;
 
@@ -80,7 +80,7 @@ export default function Home() {
 
         const zkappPublicKey = PublicKey.fromBase58(ZKAPP_ADDRESS);
 
-        await zkappWorkerClient.initZkappInstance(zkappPublicKey);
+        await zkappWorkerClient.initZkappInstance(ZKAPP_ADDRESS);
 
         console.log('Getting zkApp state...');
         setDisplayText('Getting zkApp state...');
@@ -163,7 +163,7 @@ export default function Home() {
       }
     });
 
-    const transactionLink = `https://berkeley.minaexplorer.com/transaction/${hash}`;
+    const transactionLink = `https://devnet.minaexplorer.com/transaction/${hash}`;
     console.log(`View transaction at ${transactionLink}`);
 
     setTransactionLink(transactionLink);
